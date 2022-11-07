@@ -9,8 +9,8 @@ Encontre seu próximo filme ou crie sua lista de observação com este aplicativ
 
 - [x] O usuário pode ver todo o filme mais recente na primeira página
 - [x] Usuário role para baixo para ver todos os outros filmes de acordo com a data de lançamento
-- [ ] O usuário pode clicar em qualquer filme para ir para sua própria página separada
-- [ ] O usuário pode ver tudo sobre as classificações do filme, sobre os atores presentes em cada página de filme separada
+- [x] O usuário pode clicar em qualquer filme para ir para sua própria página separada
+- [x] O usuário pode ver tudo sobre as classificações do filme, sobre os atores presentes em cada página de filme separada
 
 ## Recursos bônus
 

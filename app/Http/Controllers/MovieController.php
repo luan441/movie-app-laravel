@@ -31,9 +31,16 @@ class MovieController extends Controller
         $response = Http::get('https://api.themoviedb.org/3/movie/'.$movieId, [
             'api_key' => $_ENV['API_KEY'],
         ]);
+        $movie = $response->json();
+
+        $response = Http::get('https://api.themoviedb.org/3/movie/'.$movieId.'/credits', [
+            'api_key' => $_ENV['API_KEY'],
+        ]);
+        $credits = $response->json();
 
         return view('movie.show', [
-            'movie' => $response->json()
+            'movie' => $movie,
+            'credits' => $credits
         ]);
     }
 }

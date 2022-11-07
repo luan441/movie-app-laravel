@@ -1,5 +1,5 @@
 <x-layout>
-    <x-slot:title>Filme</x-slot:title>
+    <x-slot:title>{{ $movie['title'] }}</x-slot:title>
     <x-navbar />
     <div class="bg-light py-5 h-100">
         <div class="container py-5">
@@ -38,6 +38,21 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="grid-cols">
+            @foreach ($credits['crew'] as $people)
+                <div class="card text-bg-dark">
+                        @if ($people['profile_path'])
+                            <img src="https://image.tmdb.org/t/p/original{{ $people['profile_path'] }}" class="card-img-top" alt="...">
+                        @else
+                            <img src="{{ Vite::asset('resources/images/no_image.png') }}" class="card-img-top" alt="...">
+                        @endif
+                    <div class="card-img-overlay">
+                        <h5 class="card-title">{{ $people['name'] }}</h5>
+                        <p class="card-text"><small>{{ $people['job'] }}</small></p>
+                    </div>
+                </div>
+            @endforeach
             </div>
         </div>
     </div>
