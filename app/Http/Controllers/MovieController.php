@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\View\View;
 
-class HomeController extends Controller
+class MovieController extends Controller
 {
     public function index(Request $request): View
     {
