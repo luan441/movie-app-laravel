@@ -1,5 +1,5 @@
 <x-layout>
-    <x-slot:title>Home</x-slot:title>
+    <x-slot:title>Filmes</x-slot:title>
     <x-navbar />
     <div class="bg-light py-5 mt-5">
         <div class="container">
@@ -7,7 +7,7 @@
                 @foreach ($movies as $movie)
                 <div class="card">
                     @if ($movie['poster_path'])
-                    <img src="https://image.tmdb.org/t/p/original/{{ $movie['poster_path'] }}" class="card-img-top" alt="...">
+                    <img src="https://image.tmdb.org/t/p/original{{ $movie['poster_path'] }}" class="card-img-top" alt="...">
                     @else
                     <img src="{{ Vite::asset('resources/images/no_image.png') }}" class="card-img-top" alt="...">
                     @endif
@@ -17,7 +17,7 @@
                             popularidade: {{ $movie['popularity'] }} <br>
                             Data de lançamento: {{ $movie['release_date'] }}
                         </p>
-                        <a href="#" class="btn btn-dark">Ver Detalhes</a>
+                        <a href="/{{ $movie['id'] }}" class="btn btn-dark">Ver Detalhes</a>
                     </div>
                 </div>
                 @endforeach

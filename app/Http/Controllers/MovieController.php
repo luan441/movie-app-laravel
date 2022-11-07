@@ -14,16 +14,26 @@ class MovieController extends Controller
         $page = intval($request->input('page') ?? 1);
         $response = Http::get('https://api.themoviedb.org/3/discover/movie', [
             'api_key' => $_ENV['API_KEY'],
-            'language' => 'pt-BR',
             'page' => $page,
             'sort_by' => 'release_date.desc',
             'release_date.lte' => (new DateTimeImmutable())->format('Y-m-d'),
         ]);
 
-        return view('home.index', [
+        return view('movie.index', [
             'movies' => $response->json()['results'],
             'page' => $page,
             'totalPages' => $response->json()['total_pages']
+        ]);
+    }
+    
+    public function show(int $movieId): View
+    {
+        $response = Http::get('https://api.themoviedb.org/3/movie/'.$movieId, [
+            'api_key' => $_ENV['API_KEY'],
+        ]);
+
+        return view('movie.show', [
+            'movie' => $response->json()
         ]);
     }
 }
