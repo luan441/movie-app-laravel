@@ -9,7 +9,7 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             </ul>
             <form role="search" class="m-0">
-                <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                <input class="form-control" name="query" type="search" placeholder="Search" aria-label="Search">
             </form>
         </div>
     </div>

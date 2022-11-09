@@ -12,17 +12,28 @@ class MovieController extends Controller
     public function index(Request $request): View
     {
         $page = intval($request->input('page') ?? 1);
-        $response = Http::get('https://api.themoviedb.org/3/discover/movie', [
-            'api_key' => $_ENV['API_KEY'],
-            'page' => $page,
-            'sort_by' => 'release_date.desc',
-            'release_date.lte' => (new DateTimeImmutable())->format('Y-m-d'),
-        ]);
+        $query = $request->input('query') ?? '';
+
+        if ($query) {
+            $response = Http::get('https://api.themoviedb.org/3/search/movie', [
+                'api_key' => $_ENV['API_KEY'],
+                'page' => $page,
+                'query' => $query,
+            ]);
+        } else {
+            $response = Http::get('https://api.themoviedb.org/3/discover/movie', [
+                'api_key' => $_ENV['API_KEY'],
+                'page' => $page,
+                'sort_by' => 'release_date.desc',
+                'release_date.lte' => (new DateTimeImmutable())->format('Y-m-d'),
+            ]);
+        }
 
         return view('movie.index', [
             'movies' => $response->json()['results'],
             'page' => $page,
-            'totalPages' => $response->json()['total_pages']
+            'totalPages' => $response->json()['total_pages'],
+            'query' => $query,
         ]);
     }
     
@@ -41,6 +52,24 @@ class MovieController extends Controller
         return view('movie.show', [
             'movie' => $movie,
             'credits' => $credits
+        ]);
+    }
+
+    public function search(Request $request): View
+    {
+        $page = intval($request->input('page') ?? 1);
+        $query = $request->input('query') ?? '';
+        $response = Http::get('https://api.themoviedb.org/3/movie/' , [
+            'api_key' => $_ENV['API_KEY'],
+            'query' => $query,
+            'page' => $page,
+        ]);
+
+        return view('movie.index', [
+            'movies' => $response->json()['results'],
+            'page' => $page,
+            'totalPages' => $response->json()['total_pages'],
+            'query' => $query,
         ]);
     }
 }

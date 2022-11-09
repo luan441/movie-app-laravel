@@ -15,7 +15,7 @@
                         <h5 class="card-title">{{ $movie['title'] }}</h5>
                         <p class="card-text">
                             popularidade: {{ $movie['popularity'] }} <br>
-                            Data de lançamento: {{ $movie['release_date'] }}
+                            Data de lançamento: {{ $movie['release_date'] ?? '???' }}
                         </p>
                         <a href="/{{ $movie['id'] }}" class="btn btn-dark">Ver Detalhes</a>
                     </div>
@@ -30,16 +30,16 @@
                     </li>
                     @else
                     <li class="page-item">
-                        <a class="page-link text-bg-dark border-dark" href="http://localhost/?page={{ $page - 1 }}">Anterior</a>
+                        <a class="page-link text-bg-dark border-dark" href="http://localhost/?page={{ $page - 1 }}&query={{ $query }}">Anterior</a>
                     </li>
                     @endif
 
                     <li class="page-item active"><span class="page-link text-bg-secondary border-secondary">{{ $page }}</span></li>
                     @if(($page + 1) < $totalPages)
-                    <li class="page-item"><a class="page-link text-dark" href="http://localhost/?page={{ $page + 1 }}">{{ $page + 1 }}</a></li>
+                    <li class="page-item"><a class="page-link text-dark" href="http://localhost/?page={{ $page + 1 }}&query={{ $query }}">{{ $page + 1 }}</a></li>
                     @endif
                     @if(($page + 2) < $totalPages)
-                    <li class="page-item"><a class="page-link text-dark" href="http://localhost/?page={{ $page + 2 }}">{{ $page + 2 }}</a></li>
+                    <li class="page-item"><a class="page-link text-dark" href="http://localhost/?page={{ $page + 2 }}$query={{ $query }}">{{ $page + 2 }}</a></li>
                     @endif
 
                     @if($page === $totalPages)
@@ -48,7 +48,7 @@
                     </li>
                     @else
                     <li class="page-item">
-                        <a class="page-link text-bg-dark border-dark" href="http://localhost/?page={{ $page + 1 }}">Proximo</a>
+                        <a class="page-link text-bg-dark border-dark" href="http://localhost/?page={{ $page + 1 }}&query={{ $query }}">Proximo</a>
                     </li>
                     @endif
                 </ul>
