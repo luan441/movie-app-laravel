@@ -54,22 +54,4 @@ class MovieController extends Controller
             'credits' => $credits
         ]);
     }
-
-    public function search(Request $request): View
-    {
-        $page = intval($request->input('page') ?? 1);
-        $query = $request->input('query') ?? '';
-        $response = Http::get('https://api.themoviedb.org/3/movie/' , [
-            'api_key' => $_ENV['API_KEY'],
-            'query' => $query,
-            'page' => $page,
-        ]);
-
-        return view('movie.index', [
-            'movies' => $response->json()['results'],
-            'page' => $page,
-            'totalPages' => $response->json()['total_pages'],
-            'query' => $query,
-        ]);
-    }
 }

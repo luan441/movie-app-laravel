@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\MovieController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MovieController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,4 +15,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [MovieController::class, 'index']);
-Route::get('/{movieId}', [MovieController::class, 'show']);
+Route::get('/movie/{id}', [MovieController::class, 'show']);
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+require __DIR__.'/auth.php';

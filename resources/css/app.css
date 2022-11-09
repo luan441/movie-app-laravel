@@ -1,19 +1,4 @@
-.grid-cols {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 5px;
-    justify-items: center;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@media (max-width: 992px) {
-    .grid-cols {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-
-@media (max-width: 768px) {
-    .grid-cols {
-        display: block;
-    }
-}

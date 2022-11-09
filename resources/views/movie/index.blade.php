@@ -17,7 +17,7 @@
                             popularidade: {{ $movie['popularity'] }} <br>
                             Data de lançamento: {{ $movie['release_date'] ?? '???' }}
                         </p>
-                        <a href="/{{ $movie['id'] }}" class="btn btn-dark">Ver Detalhes</a>
+                        <a href="/movie/{{ $movie['id'] }}" class="btn btn-dark">Ver Detalhes</a>
                     </div>
                 </div>
                 @endforeach
